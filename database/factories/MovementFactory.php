@@ -25,6 +25,7 @@ class MovementFactory extends Factory
             'type' => $this->faker->randomElement(Movement::TYPE_OPTIONS),
             'amount' => $this->faker->randomFloat(2, 100, 10000),
             'description' => $this->faker->text(5),
+            'created_at' => $this->faker->dateTimeBetween(),
         ];
     }
 }

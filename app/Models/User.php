@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Orchid\Platform\Models\User as Authenticatable;
 
@@ -70,5 +71,12 @@ class User extends Authenticatable
     public function movements()
     {
         return $this->hasMany(Movement::class);
+    }
+
+    public function balance()
+    {
+        return $this->movements()
+            ->select(DB::raw("sum(case when type = 'EGRESS' then -amount else amount end) as balance"))
+            ->value('balance');
     }
 }

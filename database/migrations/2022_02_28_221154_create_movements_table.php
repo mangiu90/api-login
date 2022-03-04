@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->enum('type', [Movement::ENTRY, Movement::EGRESS]);
             $table->decimal('amount');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
